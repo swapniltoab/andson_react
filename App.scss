@@ -1,0 +1,90 @@
+.App {
+  padding: 20px;
+}
+
+.product-item {
+  display: block;
+  background: red;
+  border: 1px solid #fff;
+  min-height: 150px;
+  padding: 20px 50px;
+  width: 100%;
+}
+
+.prod_img{
+  width: 50px;
+}
+
+.product_row {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.mainOrderOverviewContainer {
+  display: flex;
+}
+
+.shippingOverviewContainer {
+  width: 50%;
+}
+
+.cardOverviewContainer {
+  width: 50%;
+}
+
+.shippingOverviewContainer h3, .cardOverviewContainer h3 {
+  border: 1px solid;
+  text-align: center;
+  padding: 10px;
+  margin: 0;
+}
+
+.productOverviewContainer h3{
+  border: 1px solid;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 0;
+}
+
+.productOverviewContainer .product_row {
+  display: flex;
+  width: 80%;
+  margin: 10px auto 0;
+}
+
+.productOverviewContainer {
+  margin-bottom: 20px;
+}
+
+.shippingDetailsContainer , .cardDetailsContainer{
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #000;
+  min-height: 85px;
+}
+
+.info {
+  padding: 5px;
+}
+
+.cartTotal {
+  float: right;
+  display: block;
+}
+
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
