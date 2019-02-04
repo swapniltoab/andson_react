@@ -6,6 +6,11 @@ import CreditCardDetails from '../Components/CreditCardDetails';
 import OrderReview from '../Components/OrderReview';
 import Thanks from '../Components/Thanks';
 
+import Home from '../Components/Home';
+import About from '../Components/About';
+import Users from '../Components/Users';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -263,6 +268,27 @@ class MainContainer extends Component {
     return (
       <div>
         {/* <pre>{JSON.stringify(this.state.cart)}</pre> */}
+        <Router>
+          <div>
+            <nav>
+              <ul>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/about/">About</Link>
+                </li>
+                <li>
+                  <Link to="/users/">Users</Link>
+                </li>
+              </ul>
+            </nav>
+
+            <Route path="/" exact component={Home} />
+            <Route path="/about/" component={About} />
+            <Route path="/users/" component={Users} />
+          </div>
+        </Router>
         {showCompoent}
       </div>
     );
