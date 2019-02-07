@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import ProductList from '../Components/ProductList';
 import Cart from '../Components/Cart';
 import Shippingaddress from '../Components/Shippingaddress';
 import CreditCardDetails from '../Components/CreditCardDetails';
 import OrderReview from '../Components/OrderReview';
 import Thanks from '../Components/Thanks';
+import PostFetch from '../Components/PostFetch';
+import PostAxios from '../Components/PostAxios';
 
 import Home from '../Components/Home';
 import About from '../Components/About';
@@ -29,11 +32,18 @@ const PRODUCTS = [
   { id: 5, name: 'Choco 5', price: 50, currency: '$', imgUrl: '../images/choco5.jpg', cartQuantity: 0 }
 ];
 
+const FetchApiUrl = 'http://duconair.oablab.com/wp-json/wp/v2/pages';
+const AxiosApiUrl = 'https://crypco.com/wp-json/wp/v2/pages';
+const proxyurl = "https://cors-anywhere.herokuapp.com/";
+
 class MainContainer extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
+      fetchPosts: [],
+      axiosPosts: [],
+      isLoading: true,
       products: PRODUCTS,
       cart: {
         items: [],
@@ -63,6 +73,37 @@ class MainContainer extends Component {
     this.handleCcDetailFormSubmit = this.handleCcDetailFormSubmit.bind(this);
     this.handleShippingDataFormSubmit = this.handleShippingDataFormSubmit.bind(this);
     this.handleRemoveProductFromCart = this.handleRemoveProductFromCart.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchPosts();
+    this.axiosPosts();
+  }
+
+  fetchPosts() {
+    fetch(FetchApiUrl)
+      .then(response => response.json())
+      .then(
+        data =>
+          this.setState({
+            fetchPosts: data,
+            isLoading: false,
+          })
+      )
+      .catch(error => this.setState({ error, isLoading: false }));
+  }
+
+  axiosPosts() {
+
+    axios.get(proxyurl + AxiosApiUrl)
+    .then(result => this.setState({
+      axiosPosts: result.data,
+      isLoading: false
+    }))
+    .catch(error => this.setState({
+      isLoading: false
+    }));
+
   }
 
   handleGoToPage(pageName) {
@@ -258,6 +299,18 @@ class MainContainer extends Component {
 
       case 'thank-you-sucess':
         showCompoent = <Thanks
+          goToPage={this.handleGoToPage} />;
+        break;
+
+      case 'post-fetch':
+        showCompoent = <PostFetch
+          posts={this.state.fetchPosts}
+          goToPage={this.handleGoToPage} />;
+        break;
+
+      case 'post-axios':
+        showCompoent = <PostAxios
+          posts={this.state.axiosPosts}
           goToPage={this.handleGoToPage} />;
         break;
 

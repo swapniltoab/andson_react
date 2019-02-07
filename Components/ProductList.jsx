@@ -25,6 +25,8 @@ class ProductList extends Component {
         }
         </div>
         <button type="button" onClick={() => goToPage('cart')} >Go to cart</button>
+        <button type="button" onClick={() => goToPage('post-fetch')} >Post Fetch</button>
+        <button type="button" onClick={() => goToPage('post-axios')} >Post Axios</button>
       </div>
     );
 
